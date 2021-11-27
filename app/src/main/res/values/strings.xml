@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Football Care</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="empty" />
     <string name="text_search_placeholder">Search...</string>
     <string name="text_categories">Tìm kiếm theo danh mục</string>
     <string name="text_next">Next</string>
+    <string name="league_text_sub_title">Nhấn vào từng phần tử để theo dõi một hoặc nhiều giải đấu. Những thứ nãy sẽ xuất hiện trong tab yêu thích của bạn</string>
+    <string name="league_text_follow_league">Follow Leagues</string>
+    <string name="text_skip">Skip</string>
+    <string name="text_one_half">1 of 2</string>
 </resources>

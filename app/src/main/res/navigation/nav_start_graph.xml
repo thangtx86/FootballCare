@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_graph"
+    app:startDestination="@id/choose_league_fragment">
+
+
+    <fragment
+        android:id="@+id/choose_league_fragment"
+        android:name="com.apps.footballcare.view.league.choose_league.ChooseLeagueFragment"
+        android:label="fragment_choose_league"
+        tools:layout="@layout/fragment_choose_league" />
+
+</navigation>

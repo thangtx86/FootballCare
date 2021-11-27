@@ -2,6 +2,7 @@ package com.apps.footballcare.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.apps.footballcare.base.viewmodel.EmptyViewModel
 import com.apps.footballcare.di.ViewModelKey
 import com.apps.footballcare.di.factory.ViewModelFactory
 import com.apps.footballcare.view.MainViewModel
@@ -25,6 +26,11 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelModule {
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EmptyViewModel::class)
+    internal abstract fun providesEmptyViewModel(viewModel: EmptyViewModel): ViewModel
 
     @Binds
     @IntoMap

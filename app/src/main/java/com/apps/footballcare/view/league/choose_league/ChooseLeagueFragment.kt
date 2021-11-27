@@ -63,7 +63,6 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
                     response.data?.let {
                         leagueAdapter.submitList(response.data)
                     }
-                    Timber.e("" + response.data)
                 }
                 Resource.Status.LOADING -> {
                     showProgress()

@@ -31,7 +31,6 @@ class ChooseLeagueViewModel @Inject constructor(private val repository: RemoteRe
         viewModelScope.launch {
             _response.postValue(Resource.loading(null))
             try {
-                delay(1000L)
                 val response = repository.getLeaguesBySeasons(2021)
                 val list = response.response
                 list?.let {
