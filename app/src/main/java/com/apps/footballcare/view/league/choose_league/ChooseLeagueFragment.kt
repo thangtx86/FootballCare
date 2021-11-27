@@ -15,7 +15,7 @@ import java.sql.Time
 
 class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLeagueViewModel>() {
     private val leagueAdapter by lazy { LeagueAdapter() }
-    private var leaguesSelected: MutableList<Response> = mutableListOf()
+//    private var leaguesSelected: MutableList<Response> = mutableListOf()
 
     override val layoutResourceId: Int = R.layout.fragment_choose_league
     override val classTypeOfViewModel: Class<ChooseLeagueViewModel> =
@@ -31,26 +31,19 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
 
     override fun initView() {
         super.initView()
+        binding.viewModel = viewModel
         setupRecyclerView()
     }
 
     override fun initStartRequest() {
         super.initStartRequest()
-        viewModel.getLeaguesBySeasons()
     }
 
     override fun setupClickListeners() {
         super.setupClickListeners()
         leagueAdapter.onLeagueItemClick = {
-            if (leaguesSelected.isNotEmpty()) {
-                leaguesSelected.clear()
-            }
-            leaguesSelected.addAll(it)
+            viewModel.onLeagueItemSelected(it)
         }
-        binding.buttonNext.setOnClickListener {
-            Timber.e("" + leaguesSelected?.size)
-        }
-
     }
 
     override fun setUpViewModelStateObservers() {
@@ -75,7 +68,16 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
             }
 
         })
+        viewModel.events.observe(this, { event ->
+            event.getContentIfNotHandled()?.let {
+                handleAction(it)
+            }
+        })
 
+    }
+
+    private fun handleAction(response: List<Response>) {
+        Toast.makeText(context, "" + response.size, Toast.LENGTH_LONG).show()
     }
 
 

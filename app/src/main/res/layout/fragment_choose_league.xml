@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.apps.footballcare.view.league.choose_league.ChooseLeagueViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,6 +78,7 @@
             tools:listitem="@layout/item_league" />
 
         <Button
+            android:onClick="@{() -> viewModel.onNext()}"
             android:id="@+id/button_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
