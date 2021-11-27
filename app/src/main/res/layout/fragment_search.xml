@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.search.SearchFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_10">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:background="@drawable/shape_round_conners_white_50"
+                android:drawableStart="@drawable/ic_search_magnify_24"
+                android:drawableEnd="@drawable/ic_filter_24"
+                android:drawablePadding="@dimen/dp_8"
+                android:hint="@string/text_search_placeholder"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingTop="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_9" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_categories"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/sp_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:id="@+id/rv_categories"
+                    tools:listitem="@layout/item_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</layout>
