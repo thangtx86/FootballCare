@@ -28,6 +28,8 @@
             android:layout_height="wrap_content"
             android:text="@string/text_skip"
             android:textSize="@dimen/sp_14"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintBaseline_toBaselineOf="@+id/text_total_page"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
