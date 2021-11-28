@@ -4,6 +4,7 @@ import com.apps.footballcare.view.home.HomeFragment
 import com.apps.footballcare.view.league.choose_league.ChooseLeagueFragment
 import com.apps.footballcare.view.search.SearchFragment
 import com.apps.footballcare.view.settings.SettingsFragment
+import com.apps.footballcare.view.teams.ChooseTeamsFragment
 import com.apps.footballcare.view.video.VideoFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -32,6 +33,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributesChooseLeagueFragment(): ChooseLeagueFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributesChooseTeamsFragment(): ChooseTeamsFragment
 
 
 }

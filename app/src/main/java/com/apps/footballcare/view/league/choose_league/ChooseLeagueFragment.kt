@@ -2,6 +2,7 @@ package com.apps.footballcare.view.league.choose_league
 
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.apps.footballcare.R
@@ -13,9 +14,11 @@ import com.apps.footballcare.view.league.choose_league.adapter.LeagueAdapter
 import timber.log.Timber
 import java.sql.Time
 
+const val NEXT_ACTION: String = "NEXT"
+const val SKIP_ACTION: String = "SKIP"
+
 class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLeagueViewModel>() {
     private val leagueAdapter by lazy { LeagueAdapter() }
-//    private var leaguesSelected: MutableList<Response> = mutableListOf()
 
     override val layoutResourceId: Int = R.layout.fragment_choose_league
     override val classTypeOfViewModel: Class<ChooseLeagueViewModel> =
@@ -76,8 +79,18 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
 
     }
 
-    private fun handleAction(response: List<Response>) {
-        Toast.makeText(context, "" + response.size, Toast.LENGTH_LONG).show()
+    private fun handleAction(action: String) {
+        when (action) {
+            NEXT_ACTION -> {
+                val actionNav = ChooseLeagueFragmentDirections.actionNavigateChooseTeam()
+                findNavController().navigate(actionNav)
+            }
+            SKIP_ACTION ->{
+                val actionNav = ChooseLeagueFragmentDirections.actionNavigateChooseTeam()
+                findNavController().navigate(actionNav)
+            }
+
+        }
     }
 
 

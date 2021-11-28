@@ -10,6 +10,17 @@
         android:id="@+id/choose_league_fragment"
         android:name="com.apps.footballcare.view.league.choose_league.ChooseLeagueFragment"
         android:label="fragment_choose_league"
-        tools:layout="@layout/fragment_choose_league" />
+        tools:layout="@layout/fragment_choose_league">
+        <action
+            android:id="@+id/action_navigate_choose_team"
+            app:destination="@id/choose_teams_fragment"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/choose_teams_fragment"
+        android:name="com.apps.footballcare.view.teams.ChooseTeamsFragment"
+        android:label="fragment_choose_teams"
+        tools:layout="@layout/fragment_choose_teams" />
 
 </navigation>
