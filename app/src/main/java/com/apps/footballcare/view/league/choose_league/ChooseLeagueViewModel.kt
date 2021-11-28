@@ -75,14 +75,7 @@ class ChooseLeagueViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val list = mutableListOf<ResponseEntity>()
             try {
-                withContext(Dispatchers.IO) {
-                    val responseEntity = localRepositoryImpl.getAllLeague()
-                    withContext(Dispatchers.IO) {
-                        if (!responseEntity.isNullOrEmpty()) {
-                            localRepositoryImpl.deleteAllLeague()
-                        }
-                    }
-                }
+                checkExistDb()
                 _leaguesSelected.map { item ->
                     val lear = item.league
                     val country = item.country
@@ -99,6 +92,17 @@ class ChooseLeagueViewModel @Inject constructor(
                 e.printStackTrace()
             }
 
+        }
+    }
+
+    private suspend fun onDeleteLeagueDB() = withContext(Dispatchers.IO) {
+        localRepositoryImpl.deleteAllLeague()
+    }
+
+    private suspend fun checkExistDb() = withContext(Dispatchers.IO) {
+        val responseEntity = localRepositoryImpl.getAllLeague()
+        if (!responseEntity.isNullOrEmpty()) {
+            onDeleteLeagueDB()
         }
     }
 

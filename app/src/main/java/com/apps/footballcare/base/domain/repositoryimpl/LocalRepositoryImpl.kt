@@ -4,9 +4,11 @@ import com.apps.footballcare.data.local.dao.LeagueDao
 import com.apps.footballcare.data.local.entity.ResponseEntity
 import com.apps.footballcare.base.domain.repository.LocalRepository
 import com.apps.footballcare.utils.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,6 +26,8 @@ class LocalRepositoryImpl @Inject constructor(private val dao: LeagueDao) : Loca
         dao.insertLeagues(leagueEntity)
 
 
-    override suspend fun getAllLeague(): List<ResponseEntity> = dao.getAllLeagues()
+    override suspend fun getAllLeague(): List<ResponseEntity> =
+        dao.getAllLeagues()
+
     override suspend fun deleteAllLeague() = dao.deleteAllLeagues()
 }
