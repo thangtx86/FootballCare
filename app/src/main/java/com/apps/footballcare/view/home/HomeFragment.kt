@@ -40,23 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun setUpViewModelStateObservers() {
         super.setUpViewModelStateObservers()
 
-        viewModel.hits.observe(this, { hit ->
-            when (hit.status) {
-                Resource.Status.SUCCESS -> {
-                    dismissProgress()
-                    Timber.e("" + hit.data)
-                }
-                Resource.Status.LOADING -> {
-                    showProgress()
-                }
-                Resource.Status.ERROR -> {
-                    dismissProgress()
-                    Timber.e(hit.message)
-                    Toast.makeText(context, hit.message, Toast.LENGTH_LONG).show()
-                }
-            }
 
-        })
 
     }
 

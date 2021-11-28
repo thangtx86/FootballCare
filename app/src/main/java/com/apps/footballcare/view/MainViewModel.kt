@@ -1,7 +1,7 @@
 package com.apps.footballcare.view
 
 import androidx.lifecycle.ViewModel
-import com.apps.footballcare.data.repositoryimpl.RemoteRepositoryImpl
+import com.apps.footballcare.base.domain.repositoryimpl.RemoteRepositoryImpl
 import javax.inject.Inject
 
 /**

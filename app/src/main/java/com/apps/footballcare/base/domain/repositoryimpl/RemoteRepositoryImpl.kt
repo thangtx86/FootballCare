@@ -1,7 +1,7 @@
-package com.apps.footballcare.data.repositoryimpl
+package com.apps.footballcare.base.domain.repositoryimpl
 
 import com.apps.footballcare.data.remote.model.FootballResponse
-import com.apps.footballcare.data.repository.RemoteRepository
+import com.apps.footballcare.base.domain.repository.RemoteRepository
 import com.apps.footballcare.data.remote.service.RemoteApiService
 import javax.inject.Inject
 import javax.inject.Singleton

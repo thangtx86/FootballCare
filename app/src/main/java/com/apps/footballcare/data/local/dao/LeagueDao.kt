@@ -1,10 +1,9 @@
 package com.apps.footballcare.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
+import androidx.room.*
 import com.apps.footballcare.data.local.entity.LeagueEntity
 import com.apps.footballcare.data.local.entity.ResponseEntity
+import kotlinx.coroutines.flow.Flow
 
 /**
  *
@@ -16,5 +15,11 @@ import com.apps.footballcare.data.local.entity.ResponseEntity
 @Dao
 interface LeagueDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addLeague(leagueEntity: List<ResponseEntity>)
+    suspend fun insertLeagues(leagueEntity: List<ResponseEntity>)
+
+    @Query("DELETE FROM tbl_league")
+    suspend fun deleteAllLeagues()
+
+    @Query("SELECT * FROM tbl_league")
+     fun getAllLeagues(): List<ResponseEntity>
 }

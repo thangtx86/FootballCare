@@ -8,5 +8,5 @@
     <string name="league_text_sub_title">Nhấn vào từng phần tử để theo dõi một hoặc nhiều giải đấu. Những thứ nãy sẽ xuất hiện trong tab yêu thích của bạn</string>
     <string name="league_text_follow_league">Follow Leagues</string>
     <string name="text_skip">Skip</string>
-    <string name="text_one_half">1 of 2</string>
+    <string name="text_one_half">1/2</string>
 </resources>

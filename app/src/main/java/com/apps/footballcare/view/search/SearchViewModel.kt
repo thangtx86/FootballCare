@@ -3,7 +3,7 @@ package com.apps.footballcare.view.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.apps.footballcare.base.viewmodel.BaseViewModel
-import com.apps.footballcare.data.repositoryimpl.RemoteRepositoryImpl
+import com.apps.footballcare.base.domain.repositoryimpl.RemoteRepositoryImpl
 import javax.inject.Inject
 
 /**

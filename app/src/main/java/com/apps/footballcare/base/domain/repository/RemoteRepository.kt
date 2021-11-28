@@ -1,4 +1,4 @@
-package com.apps.footballcare.data.repository
+package com.apps.footballcare.base.domain.repository
 
 import com.apps.footballcare.data.remote.model.FootballResponse
 
