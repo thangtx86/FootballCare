@@ -55,8 +55,9 @@ class ChooseLeagueViewModel @Inject constructor(
                     mResponseList.clear()
                 }
                 list?.let {
-                    _response.postValue(Resource.success(it))
                     mResponseList.addAll(list)
+                    _response.postValue(Resource.success(it))
+
                 }
 
             } catch (e: Exception) {
