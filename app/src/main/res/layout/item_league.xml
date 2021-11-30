@@ -7,7 +7,7 @@
 
         <variable
             name="response"
-            type="com.apps.footballcare.data.remote.model.Response" />
+            type="com.apps.footballcare.data.remote.model.League" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -32,7 +32,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/empty"
                 android:scaleType="fitXY"
-                app:imageUrl="@{response.league.logo}" />
+                app:imageUrl="@{response.leagueLogo}" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -52,20 +52,20 @@
                         android:id="@+id/text_league_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{response.league.name}"
-                        android:textSize="@dimen/sp_14"
                         android:fontFamily="@font/roboto_medium"
+                        android:text="@{response.leagueName}"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
                         tools:text="League Name" />
 
                     <TextView
                         android:id="@+id/text_country"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/black"
                         android:layout_marginTop="@dimen/dp_2"
-                        android:text="@{response.country.name}"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@{response.countryName}"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/sp_12"
                         tools:text="League Name" />
 
@@ -82,7 +82,7 @@
                     android:layout_marginEnd="@dimen/dp_8"
                     android:contentDescription="@string/empty"
                     android:src="@drawable/ic_baseline_check_24"
-                    app:display="@{response.isSelect}" />
+                    app:display="@{response.isSelected}" />
 
             </RelativeLayout>
 

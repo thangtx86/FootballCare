@@ -1,6 +1,6 @@
 package com.apps.footballcare.base.domain.repository
 
-import com.apps.footballcare.data.remote.model.FootballResponse
+import com.apps.footballcare.data.remote.model.League
 
 /**
  *
@@ -10,5 +10,5 @@ import com.apps.footballcare.data.remote.model.FootballResponse
  *
  */
 interface RemoteRepository {
-    suspend fun getLeaguesBySeasons(seasons: Int): FootballResponse
+    suspend fun getLeaguesBySeasons(league: String): List<League>
 }

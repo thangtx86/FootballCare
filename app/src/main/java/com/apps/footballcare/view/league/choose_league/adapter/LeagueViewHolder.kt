@@ -2,11 +2,10 @@ package com.apps.footballcare.view.league.choose_league.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.footballcare.R
 import com.apps.footballcare.base.binding.setDisplay
-import com.apps.footballcare.data.remote.model.Response
+import com.apps.footballcare.data.remote.model.League
 import com.apps.footballcare.databinding.ItemLeagueBinding
 import timber.log.Timber
 
@@ -19,16 +18,16 @@ import timber.log.Timber
  */
 class LeagueViewHolder(
     private val binding: ItemLeagueBinding,
-    private val onLeagueItemClick: ((List<Response>) -> Unit)?,
-    private var listSelected: MutableList<Response>
+    private val onLeagueItemClick: ((List<League>) -> Unit)?,
+    private var listSelected: MutableList<League>
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(response: Response) {
+    fun bind(response: League) {
         binding.root.setOnClickListener {
-            response.isSelect = !response.isSelect
-            binding.imgSelect.setDisplay(response.isSelect)
-            if (response.isSelect) {
+            response.isSelected = !response.isSelected
+            binding.imgSelect.setDisplay(response.isSelected)
+            if (response.isSelected) {
                 listSelected.add(response)
             } else {
                 listSelected.remove(response)
@@ -44,8 +43,8 @@ class LeagueViewHolder(
     companion object {
         fun create(
             parent: ViewGroup,
-            onPhotoItemClick: ((List<Response>) -> Unit)?,
-            listSelected: MutableList<Response>
+            onPhotoItemClick: ((List<League>) -> Unit)?,
+            listSelected: MutableList<League>
         ): LeagueViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_league, parent, false)

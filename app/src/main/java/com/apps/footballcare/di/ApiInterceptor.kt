@@ -17,12 +17,12 @@ class ApiInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
         val originalHttpUrl = original.url()
-        val requestBuilder = original.newBuilder().url(originalHttpUrl.newBuilder().build())
-//        requestBuilder.addHeader("Cache-Control", "public, max-stale=36000")
-        requestBuilder.apply {
-            addHeader("x-rapidapi-key", BuildConfig.ACCESS_KEY)
-            addHeader("x-rapidapi-host", BuildConfig.API_HOST)
-        }
+        val requestBuilder = original.newBuilder().url(originalHttpUrl.newBuilder().addQueryParameter("APIkey",BuildConfig.ACCESS_KEY) .build())
+        requestBuilder.addHeader("Cache-Control", "public, max-stale=36000")
+//        requestBuilder.apply {
+//            addHeader("x-rapidapi-key", BuildConfig.ACCESS_KEY)
+//            addHeader("x-rapidapi-host", BuildConfig.API_HOST)
+//        }
 
         return chain.proceed(requestBuilder.build())
     }

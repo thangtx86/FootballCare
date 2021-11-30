@@ -5,14 +5,13 @@ import com.apps.footballcare.base.viewmodel.BaseViewModel
 import com.apps.footballcare.data.local.entity.CountryEntity
 import com.apps.footballcare.data.local.entity.LeagueEntity
 import com.apps.footballcare.data.local.entity.ResponseEntity
-import com.apps.footballcare.data.remote.model.Response
 import com.apps.footballcare.base.domain.repositoryimpl.LocalRepositoryImpl
 import com.apps.footballcare.base.domain.repositoryimpl.RemoteRepositoryImpl
+import com.apps.footballcare.data.remote.model.League
 import com.apps.footballcare.utils.Contains.EMPTY
 import com.apps.footballcare.utils.Event
 import com.apps.footballcare.utils.Resource
 import kotlinx.coroutines.*
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -28,15 +27,15 @@ class ChooseLeagueViewModel @Inject constructor(
 ) :
     BaseViewModel() {
 
-    private var _leaguesSelected = mutableListOf<Response>()
+    private var _leaguesSelected = mutableListOf<League>()
 
     val events: LiveData<Event<String>>
         get() = _events
     private val _events = MutableLiveData<Event<String>>()
 
-    private val _response = MutableLiveData<Resource<List<Response>>>()
-    val response: LiveData<Resource<List<Response>>> = _response
-    var mResponseList = mutableListOf<Response>()
+    private val _response = MutableLiveData<Resource<List<League>>>()
+    val response: LiveData<Resource<List<League>>> = _response
+    var mResponseList = mutableListOf<League>()
 
     var searchQuery: String = EMPTY
         set(value) {
@@ -49,13 +48,12 @@ class ChooseLeagueViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             _response.postValue(Resource.loading(null))
             try {
-                val response = api.getLeaguesBySeasons(2021)
-                val list = response.response
+                val response = api.getLeaguesBySeasons("get_leagues")
                 if (mResponseList.isNotEmpty()) {
                     mResponseList.clear()
                 }
-                list?.let {
-                    mResponseList.addAll(list)
+                response?.let {
+                    mResponseList.addAll(response)
                     _response.postValue(Resource.success(it))
 
                 }
@@ -71,7 +69,7 @@ class ChooseLeagueViewModel @Inject constructor(
     private fun onFilterLeague(query: String) {
         val result = if (query.isNotEmpty()) {
             mResponseList.filter { item ->
-                item.league!!.name!!.contains(query)
+                item.leagueName!!.contains(query)
             }
         } else {
             mResponseList
@@ -80,7 +78,7 @@ class ChooseLeagueViewModel @Inject constructor(
     }
 
 
-    fun onLeagueItemSelected(it: List<Response>) {
+    fun onLeagueItemSelected(it: List<League>) {
         if (_leaguesSelected.isNotEmpty()) {
             _leaguesSelected.clear()
         }
@@ -92,16 +90,16 @@ class ChooseLeagueViewModel @Inject constructor(
             val list = mutableListOf<ResponseEntity>()
             try {
                 checkExistDb()
-                _leaguesSelected.map { item ->
-                    val lear = item.league
-                    val country = item.country
-                    val leagueEntity = LeagueEntity(lear?.id, lear?.name, lear?.type, lear?.logo)
-                    val countryEntity = CountryEntity(country?.name, country?.code, country?.flag)
-                    val responseEntity =
-                        ResponseEntity(league = leagueEntity, country = countryEntity)
-                    list.add(responseEntity)
-                }
-                database.insertLeagues(list)
+//                _leaguesSelected.map { item ->
+//                    val lear = item.league
+//                    val country = item.country
+//                    val leagueEntity = LeagueEntity(lear?.id, lear?.name, lear?.type, lear?.logo)
+//                    val countryEntity = CountryEntity(country?.name, country?.code, country?.flag)
+//                    val responseEntity =
+//                        ResponseEntity(league = leagueEntity, country = countryEntity)
+//                    list.add(responseEntity)
+//                }
+//                database.insertLeagues(list)
                 _events.postValue(Event(NEXT_ACTION))
 
             } catch (e: Exception) {

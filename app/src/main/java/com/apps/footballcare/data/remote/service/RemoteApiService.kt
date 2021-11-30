@@ -1,6 +1,6 @@
 package com.apps.footballcare.data.remote.service
 
-import com.apps.footballcare.data.remote.model.FootballResponse
+import com.apps.footballcare.data.remote.model.League
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,9 +13,9 @@ import retrofit2.http.Query
  */
 interface RemoteApiService {
     /**
-     * The func use for get leagues by seasons.
+     * The func use for get leagues.
      * Ex: get leagues by seasons 2021
      */
-    @GET("/leagues")
-    suspend fun getLeaguesBySeasons(@Query("season") season: Int): FootballResponse
+    @GET("/")
+    suspend fun getLeagues(@Query("action") league: String): List<League>
 }

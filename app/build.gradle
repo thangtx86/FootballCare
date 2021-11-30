@@ -35,7 +35,6 @@ android {
     applicationVariants.all { variant ->
         variant.buildConfigField 'String', 'API_URL', "\"$API_URL\""
         variant.buildConfigField 'String', 'ACCESS_KEY', "\"$ACCESS_KEY\""
-        variant.buildConfigField 'String', 'API_HOST', "\"$API_HOST\""
     }
     buildFeatures {
 

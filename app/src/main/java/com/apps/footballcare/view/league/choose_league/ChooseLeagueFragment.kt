@@ -1,26 +1,16 @@
 package com.apps.footballcare.view.league.choose_league
 
-import android.os.Build
-import android.util.DisplayMetrics
-import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.apps.footballcare.R
 import com.apps.footballcare.base.view.BaseFragment
-import com.apps.footballcare.data.remote.model.Response
 import com.apps.footballcare.databinding.FragmentChooseLeagueBinding
-import com.apps.footballcare.extensions.visibilityWithAnimation
 import com.apps.footballcare.utils.Contains.EMPTY
 import com.apps.footballcare.utils.Resource
 import com.apps.footballcare.view.league.choose_league.adapter.LeagueAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
 import timber.log.Timber
-import java.sql.Time
 
 const val NEXT_ACTION: String = "NEXT"
 const val SKIP_ACTION: String = "SKIP"

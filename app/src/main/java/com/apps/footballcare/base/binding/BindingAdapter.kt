@@ -21,7 +21,10 @@ import timber.log.Timber
 @BindingAdapter("imageUrl")
 fun setImageUrl(imageView: ImageView, url: String?) {
     url?.let { imageUrl ->
-        Picasso.get().load(imageUrl).into(imageView)
+        if (imageUrl.isNotEmpty()) {
+            Picasso.get().load(imageUrl).into(imageView)
+        }
+
     }
 }
 
