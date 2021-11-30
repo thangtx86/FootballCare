@@ -10,6 +10,7 @@ import com.apps.footballcare.view.home.HomeViewModel
 import com.apps.footballcare.view.league.choose_league.ChooseLeagueViewModel
 import com.apps.footballcare.view.search.SearchViewModel
 import com.apps.footballcare.view.settings.SettingsViewModel
+import com.apps.footballcare.view.start.GetStartedViewModel
 import com.apps.footballcare.view.teams.ChooseTeamsViewModel
 import com.apps.footballcare.view.video.VideoViewModel
 import dagger.Binds
@@ -68,6 +69,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChooseTeamsViewModel::class)
     internal abstract fun providesChooseTeamsViewModel(viewModel: ChooseTeamsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GetStartedViewModel::class)
+    internal abstract fun providesGetStartedViewModel(viewModel: GetStartedViewModel): ViewModel
 
 
 }

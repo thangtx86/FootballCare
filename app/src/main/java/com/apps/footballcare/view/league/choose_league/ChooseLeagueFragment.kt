@@ -40,6 +40,7 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
 
     override fun initStartRequest() {
         super.initStartRequest()
+        viewModel.getLeaguesBySeasons()
     }
 
     override fun setupClickListeners() {

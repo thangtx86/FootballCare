@@ -11,17 +11,18 @@ import com.apps.footballcare.databinding.ActivityGetStartedBinding
 import com.apps.footballcare.di.injectViewModel
 import com.apps.footballcare.view.MainActivity
 
-class GetStartedActivity : BaseActivity<ActivityGetStartedBinding, EmptyViewModel>() {
+class GetStartedActivity : BaseActivity<ActivityGetStartedBinding, GetStartedViewModel>() {
 
     override fun injectViewModel() {
         mViewModel = injectViewModel(viewModelFactory)
     }
 
-    override fun getViewModelClass(): Class<EmptyViewModel> {
-        return EmptyViewModel::class.java
+    override fun getViewModelClass(): Class<GetStartedViewModel> {
+        return GetStartedViewModel::class.java
     }
 
     override fun initView() {
+
     }
 
 

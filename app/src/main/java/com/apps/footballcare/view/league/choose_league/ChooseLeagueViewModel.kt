@@ -1,6 +1,5 @@
 package com.apps.footballcare.view.league.choose_league
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.apps.footballcare.base.viewmodel.BaseViewModel
 import com.apps.footballcare.data.local.entity.CountryEntity
@@ -11,10 +10,7 @@ import com.apps.footballcare.base.domain.repositoryimpl.LocalRepositoryImpl
 import com.apps.footballcare.base.domain.repositoryimpl.RemoteRepositoryImpl
 import com.apps.footballcare.utils.Event
 import com.apps.footballcare.utils.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -26,8 +22,8 @@ import javax.inject.Inject
  *
  */
 class ChooseLeagueViewModel @Inject constructor(
-    private val repository: RemoteRepositoryImpl,
-    private val localRepositoryImpl: LocalRepositoryImpl
+    private val api: RemoteRepositoryImpl,
+    private val database: LocalRepositoryImpl
 ) :
     BaseViewModel() {
 
@@ -40,17 +36,11 @@ class ChooseLeagueViewModel @Inject constructor(
         get() = _events
     private val _events = MutableLiveData<Event<String>>()
 
-    private var listResponseEntity: MutableList<ResponseEntity> = mutableListOf()
-
-    init {
-        getLeaguesBySeasons()
-    }
-
-    private fun getLeaguesBySeasons() {
-        viewModelScope.launch {
+    fun getLeaguesBySeasons() {
+        viewModelScope.launch(Dispatchers.IO) {
             _response.postValue(Resource.loading(null))
             try {
-                val response = repository.getLeaguesBySeasons(2021)
+                val response = api.getLeaguesBySeasons(2021)
                 val list = response.response
                 list?.let {
                     _response.postValue(Resource.success(it))
@@ -85,7 +75,7 @@ class ChooseLeagueViewModel @Inject constructor(
                         ResponseEntity(league = leagueEntity, country = countryEntity)
                     list.add(responseEntity)
                 }
-                localRepositoryImpl.insertLeagues(list)
+                database.insertLeagues(list)
                 _events.postValue(Event(NEXT_ACTION))
 
             } catch (e: Exception) {
@@ -96,14 +86,18 @@ class ChooseLeagueViewModel @Inject constructor(
     }
 
     private suspend fun onDeleteLeagueDB() = withContext(Dispatchers.IO) {
-        localRepositoryImpl.deleteAllLeague()
+        database.deleteAllLeague()
     }
 
     private suspend fun checkExistDb() = withContext(Dispatchers.IO) {
-        val responseEntity = localRepositoryImpl.getAllLeague()
+        val responseEntity = getLeaguesFromDb()
         if (!responseEntity.isNullOrEmpty()) {
             onDeleteLeagueDB()
         }
+    }
+
+    private suspend fun getLeaguesFromDb(): List<ResponseEntity> {
+        return database.getAllLeague()
     }
 
     fun onSkip() {
