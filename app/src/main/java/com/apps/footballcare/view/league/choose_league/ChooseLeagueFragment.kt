@@ -1,6 +1,7 @@
 package com.apps.footballcare.view.league.choose_league
 
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.apps.footballcare.R
 import com.apps.footballcare.base.view.BaseFragment
 import com.apps.footballcare.data.remote.model.Response
 import com.apps.footballcare.databinding.FragmentChooseLeagueBinding
+import com.apps.footballcare.utils.Contains.EMPTY
 import com.apps.footballcare.utils.Resource
 import com.apps.footballcare.view.league.choose_league.adapter.LeagueAdapter
 import timber.log.Timber
@@ -48,6 +50,18 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
         leagueAdapter.onLeagueItemClick = {
             viewModel.onLeagueItemSelected(it)
         }
+        binding.editQuery.setOnQueryTextListener(onQueryTextListener)
+    }
+
+    private val onQueryTextListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            viewModel.searchQuery = newText ?: EMPTY
+            return true
+        }
     }
 
     override fun setUpViewModelStateObservers() {
@@ -86,7 +100,7 @@ class ChooseLeagueFragment : BaseFragment<FragmentChooseLeagueBinding, ChooseLea
                 val actionNav = ChooseLeagueFragmentDirections.actionNavigateChooseTeam()
                 findNavController().navigate(actionNav)
             }
-            SKIP_ACTION ->{
+            SKIP_ACTION -> {
                 val actionNav = ChooseLeagueFragmentDirections.actionNavigateChooseTeam()
                 findNavController().navigate(actionNav)
             }

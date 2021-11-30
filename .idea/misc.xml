@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/red_dot.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/drawable/shape_border_white_8dp.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/drawable/shape_round_coners_black_16.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/shape_round_conners_white_50.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/shape_round_corner_100.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/drawable/shaple_round_conners_16.xml" value="0.1625" />
+        <entry key="app/src/main/res/drawable/tab_indicator.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/activity_get_started.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14427083333333332" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14010416666666667" />
-        <entry key="app/src/main/res/layout/fragment_choose_league.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_choose_league.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_choose_teams.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_league.xml" value="0.25" />

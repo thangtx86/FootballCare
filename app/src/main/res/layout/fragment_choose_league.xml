@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.apps.footballcare.view.league.choose_league.ChooseLeagueViewModel" />
@@ -26,13 +27,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:onClick="@{()->viewModel.onSkip()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_skip"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@color/black"
             android:fontFamily="@font/roboto_regular"
+            android:onClick="@{()->viewModel.onSkip()}"
+            android:text="@string/text_skip"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintBaseline_toBaselineOf="@+id/text_total_page"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
@@ -43,10 +44,10 @@
             android:id="@+id/text_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/black"
             android:layout_marginTop="@dimen/dp_18"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/league_text_follow_league"
+            android:textColor="@color/black"
             android:textSize="@dimen/sp_28"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,33 +59,43 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
             android:lineSpacingExtra="@dimen/dp_3"
             android:text="@string/league_text_sub_title"
+            android:textColor="@color/black"
             android:textSize="@dimen/sp_13"
             app:layout_constraintTop_toBottomOf="@+id/text_header" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/edit_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@drawable/shape_border_white_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_sub_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_leagues"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="2dp"
             android:layout_marginTop="@dimen/dp_16"
             android:clipToPadding="false"
+            android:padding="2dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_sub_title"
+            app:layout_constraintTop_toBottomOf="@+id/edit_query"
             tools:listitem="@layout/item_league" />
 
         <Button
-            android:onClick="@{() -> viewModel.onNext()}"
             android:id="@+id/button_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginBottom="@dimen/dp_16"
+            android:onClick="@{() -> viewModel.onNext()}"
             android:paddingHorizontal="@dimen/dp_12"
             android:text="@string/text_next"
             android:textAllCaps="false"
